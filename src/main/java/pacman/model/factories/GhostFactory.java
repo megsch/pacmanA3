@@ -5,10 +5,13 @@ import pacman.ConfigurationParseException;
 import pacman.model.entity.Renderable;
 import pacman.model.entity.dynamic.ghost.GhostImpl;
 import pacman.model.entity.dynamic.ghost.GhostMode;
+import pacman.model.entity.dynamic.ghost.strategy.*;
 import pacman.model.entity.dynamic.physics.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Concrete renderable factory for Ghost objects
@@ -19,10 +22,23 @@ public class GhostFactory implements RenderableFactory {
     private static final int TOP_Y_POSITION_OF_MAP = 16 * 3;
     private static final int BOTTOM_Y_POSITION_OF_MAP = 16 * 34;
 
+    private static final Map<Character, Image> IMAGES = new HashMap<>();
+    static {
+        IMAGES.put(RenderableType.BINKY, new Image("maze/ghosts/blinky.png"));
+        IMAGES.put(RenderableType.PINKY, new Image("maze/ghosts/pinky.png"));
+        IMAGES.put(RenderableType.INKY, new Image("maze/ghosts/inky.png"));
+        IMAGES.put(RenderableType.CLYDE, new Image("maze/ghosts/clyde.png"));
+    }
+
+    private static final Map<Character, GhostStrategy> TARGETCORNER = new HashMap<>();
+    static {
+        TARGETCORNER.put(RenderableType.PINKY, new PinkyStrategy());
+        TARGETCORNER.put(RenderableType.INKY, new InkyStrategy());
+        TARGETCORNER.put(RenderableType.BINKY, new BinkyStrategy());
+        TARGETCORNER.put(RenderableType.CLYDE, new ClydeStrategy());
+    }
+
     private static final Image BLINKY_IMAGE = new Image("maze/ghosts/blinky.png");
-    private static final Image INKY_IMAGE = new Image("maze/ghosts/inky.png");
-    private static final Image CLYDE_IMAGE = new Image("maze/ghosts/clyde.png");
-    private static final Image PINKY_IMAGE = new Image("maze/ghosts/pinky.png");
     private static final Image GHOST_IMAGE = BLINKY_IMAGE;
     List<Vector2D> targetCorners = Arrays.asList(
             new Vector2D(0, TOP_Y_POSITION_OF_MAP),
