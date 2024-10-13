@@ -2,6 +2,7 @@ package pacman.model.entity.dynamic.ghost;
 
 import javafx.scene.image.Image;
 import pacman.model.entity.Renderable;
+import pacman.model.entity.dynamic.ghost.strategy.GhostStrategy;
 import pacman.model.entity.dynamic.physics.*;
 import pacman.model.level.Level;
 import pacman.model.maze.Maze;
@@ -18,7 +19,7 @@ public class GhostImpl implements Ghost {
     private final Image image;
     private final BoundingBox boundingBox;
     private final Vector2D startingPosition;
-    private final Vector2D targetCorner;
+    private final GhostStrategy ghostStrategy;
     private KinematicState kinematicState;
     private GhostMode ghostMode;
     private Vector2D targetLocation;
@@ -28,14 +29,15 @@ public class GhostImpl implements Ghost {
     private Map<GhostMode, Double> speeds;
     private int currentDirectionCount = 0;
 
-    public GhostImpl(Image image, BoundingBox boundingBox, KinematicState kinematicState, GhostMode ghostMode, Vector2D targetCorner) {
+    public GhostImpl(Image image, BoundingBox boundingBox, KinematicState kinematicState,
+                     GhostMode ghostMode, GhostStrategy ghostStrategy) {
         this.image = image;
         this.boundingBox = boundingBox;
         this.kinematicState = kinematicState;
         this.startingPosition = kinematicState.getPosition();
         this.ghostMode = ghostMode;
         this.possibleDirections = new HashSet<>();
-        this.targetCorner = targetCorner;
+        this.ghostStrategy = ghostStrategy;
         this.targetLocation = getTargetLocation();
         this.currentDirection = null;
     }
@@ -81,8 +83,8 @@ public class GhostImpl implements Ghost {
 
     private Vector2D getTargetLocation() {
         return switch (this.ghostMode) {
-            case CHASE -> this.playerPosition;
-            case SCATTER -> this.targetCorner;
+            case CHASE -> this.ghostStrategy.getChaseTargetLocation();
+            case SCATTER -> this.ghostStrategy.getScatterTargetLocation();
         };
     }
 
