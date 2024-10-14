@@ -71,7 +71,7 @@ public class Pacman implements Controllable, PlayerPositionSubject {
         movementInvoker.update(this.possibleDirections);
         kinematicState.update();
         this.boundingBox.setTopLeft(this.kinematicState.getPosition());
-        notifyObservers();
+        notifyObserversLocation();
     }
 
     @Override
@@ -83,24 +83,28 @@ public class Pacman implements Controllable, PlayerPositionSubject {
     public void up() {
         this.kinematicState.up();
         this.currentImage = images.get(PacmanVisual.UP);
+        notifyObserversDirection();
     }
 
     @Override
     public void down() {
         this.kinematicState.down();
         this.currentImage = images.get(PacmanVisual.DOWN);
+        notifyObserversDirection();
     }
 
     @Override
     public void left() {
         this.kinematicState.left();
         this.currentImage = images.get(PacmanVisual.LEFT);
+        notifyObserversDirection();
     }
 
     @Override
     public void right() {
         this.kinematicState.right();
         this.currentImage = images.get(PacmanVisual.RIGHT);
+        notifyObserversDirection();
     }
 
     @Override
@@ -139,7 +143,7 @@ public class Pacman implements Controllable, PlayerPositionSubject {
     @Override
     public void registerObserver(PlayerPositionObserver observer) {
         this.observers.add(observer);
-        observer.update(this.kinematicState.getPosition());
+        observer.updateLocation(this.kinematicState.getPosition());
     }
 
     @Override
@@ -147,9 +151,17 @@ public class Pacman implements Controllable, PlayerPositionSubject {
         this.observers.remove(observer);
     }
 
-    public void notifyObservers() {
+    @Override
+    public void notifyObserversLocation() {
         for (PlayerPositionObserver playerPositionObserver : observers) {
-            playerPositionObserver.update(this.kinematicState.getPosition());
+            playerPositionObserver.updateLocation(this.kinematicState.getPosition());
+        }
+    }
+
+    @Override
+    public void notifyObserversDirection() {
+        for (PlayerPositionObserver playerPositionObserver : observers) {
+            playerPositionObserver.updateDirection(this.kinematicState.getDirection());
         }
     }
 

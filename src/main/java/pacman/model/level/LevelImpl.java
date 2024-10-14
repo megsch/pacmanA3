@@ -76,6 +76,9 @@ public class LevelImpl implements Level {
             player.registerObserver(ghost);
             ghost.setSpeeds(ghostSpeeds);
             ghost.setGhostMode(this.currentGhostMode);
+            for (Ghost otherGhost : this.ghosts) {
+                ghost.registerBlinkyObserver(otherGhost.getGhostStrategy());
+            }
         }
         this.modeLengths = levelConfigurationReader.getGhostModeLengths();
         // Set up collectables

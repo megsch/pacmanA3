@@ -34,8 +34,8 @@ public class LevelConfigurationReader {
     public Map<GhostMode, Integer> getGhostModeLengths() {
         Map<GhostMode, Integer> ghostModeLengths = new HashMap<>();
         JSONObject modeLengthsObject = (JSONObject) levelConfiguration.get("modeLengths");
-        ghostModeLengths.put(GhostMode.CHASE, ((Number) modeLengthsObject.get("chase")).intValue());
-        ghostModeLengths.put(GhostMode.SCATTER, ((Number) modeLengthsObject.get("scatter")).intValue());
+        ghostModeLengths.put(GhostMode.CHASE, ((Number) modeLengthsObject.get("chase")).intValue() * 34);
+        ghostModeLengths.put(GhostMode.SCATTER, ((Number) modeLengthsObject.get("scatter")).intValue() * 34);
         return ghostModeLengths;
     }
 

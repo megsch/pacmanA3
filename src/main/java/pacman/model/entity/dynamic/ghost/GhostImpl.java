@@ -2,7 +2,10 @@ package pacman.model.entity.dynamic.ghost;
 
 import javafx.scene.image.Image;
 import pacman.model.entity.Renderable;
+import pacman.model.entity.dynamic.ghost.observer.BlinkyPositionObserver;
+import pacman.model.entity.dynamic.ghost.strategy.BlinkyStrategy;
 import pacman.model.entity.dynamic.ghost.strategy.GhostStrategy;
+import pacman.model.entity.dynamic.ghost.strategy.InkyStrategy;
 import pacman.model.entity.dynamic.physics.*;
 import pacman.model.level.Level;
 import pacman.model.maze.Maze;
@@ -19,15 +22,17 @@ public class GhostImpl implements Ghost {
     private final Image image;
     private final BoundingBox boundingBox;
     private final Vector2D startingPosition;
-    private final GhostStrategy ghostStrategy;
+    private GhostStrategy ghostStrategy;
     private KinematicState kinematicState;
     private GhostMode ghostMode;
     private Vector2D targetLocation;
     private Vector2D playerPosition;
+    private Direction playerDirection;
     private Direction currentDirection;
     private Set<Direction> possibleDirections;
     private Map<GhostMode, Double> speeds;
     private int currentDirectionCount = 0;
+    private List<BlinkyPositionObserver> blinkyPositionObservers;
 
     public GhostImpl(Image image, BoundingBox boundingBox, KinematicState kinematicState,
                      GhostMode ghostMode, GhostStrategy ghostStrategy) {
@@ -40,6 +45,9 @@ public class GhostImpl implements Ghost {
         this.ghostStrategy = ghostStrategy;
         this.targetLocation = getTargetLocation();
         this.currentDirection = null;
+        this.blinkyPositionObservers = new ArrayList<>();
+        this.playerPosition = new Vector2D(224, 8*34);
+        this.playerDirection = Direction.LEFT;
     }
 
     @Override
@@ -57,6 +65,7 @@ public class GhostImpl implements Ghost {
         this.updateDirection();
         this.kinematicState.update();
         this.boundingBox.setTopLeft(this.kinematicState.getPosition());
+        notifyBlinkyObserversLocation();
     }
 
     private void updateDirection() {
@@ -83,7 +92,8 @@ public class GhostImpl implements Ghost {
 
     private Vector2D getTargetLocation() {
         return switch (this.ghostMode) {
-            case CHASE -> this.ghostStrategy.getChaseTargetLocation();
+            case CHASE -> this.ghostStrategy.getChaseTargetLocation(this.playerPosition,
+                    this.kinematicState.getPosition(), this.playerDirection);
             case SCATTER -> this.ghostStrategy.getScatterTargetLocation();
         };
     }
@@ -120,7 +130,9 @@ public class GhostImpl implements Ghost {
     @Override
     public void setGhostMode(GhostMode ghostMode) {
         this.ghostMode = ghostMode;
-        this.kinematicState.setSpeed(speeds.get(ghostMode));
+        if (this.speeds != null) {
+            this.kinematicState.setSpeed(speeds.get(ghostMode));
+        }
         // ensure direction is switched
         this.currentDirectionCount = minimumDirectionCount;
     }
@@ -138,8 +150,33 @@ public class GhostImpl implements Ghost {
     }
 
     @Override
-    public void update(Vector2D playerPosition) {
+    public void updateLocation(Vector2D playerPosition) {
         this.playerPosition = playerPosition;
+    }
+
+    @Override
+    public void updateDirection(Direction direction) {
+        this.playerDirection = direction;
+    }
+
+    @Override
+    public void registerBlinkyObserver(BlinkyPositionObserver observer) {
+        if (this.ghostStrategy instanceof BlinkyStrategy
+        && observer instanceof InkyStrategy) {
+            this.blinkyPositionObservers.add(observer);
+        }
+    }
+
+    @Override
+    public void removeBlinkyObserver(BlinkyPositionObserver observer) {
+        this.blinkyPositionObservers.remove(observer);
+    }
+
+    @Override
+    public void notifyBlinkyObserversLocation() {
+        for (BlinkyPositionObserver observer : this.blinkyPositionObservers) {
+            observer.updateBlinkyLocation(this.kinematicState.getPosition());
+        }
     }
 
     @Override
@@ -184,7 +221,7 @@ public class GhostImpl implements Ghost {
                 .setPosition(startingPosition)
                 .build();
         this.boundingBox.setTopLeft(startingPosition);
-        this.ghostMode = GhostMode.SCATTER;
+        this.setGhostMode(GhostMode.SCATTER);
         this.currentDirectionCount = minimumDirectionCount;
     }
 
@@ -201,5 +238,15 @@ public class GhostImpl implements Ghost {
     @Override
     public Vector2D getCenter() {
         return new Vector2D(boundingBox.getMiddleX(), boundingBox.getMiddleY());
+    }
+
+    @Override
+    public GhostStrategy getGhostStrategy() {
+        return this.ghostStrategy;
+    }
+
+    @Override
+    public void setGhostStrategy(GhostStrategy ghostStrategy) {
+        this.ghostStrategy = ghostStrategy;
     }
 }

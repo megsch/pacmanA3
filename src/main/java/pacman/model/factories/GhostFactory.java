@@ -8,9 +8,7 @@ import pacman.model.entity.dynamic.ghost.GhostMode;
 import pacman.model.entity.dynamic.ghost.strategy.*;
 import pacman.model.entity.dynamic.physics.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,31 +22,26 @@ public class GhostFactory implements RenderableFactory {
 
     private static final Map<Character, Image> IMAGES = new HashMap<>();
     static {
-        IMAGES.put(RenderableType.BINKY, new Image("maze/ghosts/blinky.png"));
+        IMAGES.put(RenderableType.BLINKY, new Image("maze/ghosts/blinky.png"));
         IMAGES.put(RenderableType.PINKY, new Image("maze/ghosts/pinky.png"));
         IMAGES.put(RenderableType.INKY, new Image("maze/ghosts/inky.png"));
         IMAGES.put(RenderableType.CLYDE, new Image("maze/ghosts/clyde.png"));
     }
 
-    private static final Map<Character, GhostStrategy> TARGETCORNER = new HashMap<>();
+    private static final Map<Character, GhostStrategy> GHOSTSTRATEGY = new HashMap<>();
     static {
-        TARGETCORNER.put(RenderableType.PINKY, new PinkyStrategy());
-        TARGETCORNER.put(RenderableType.INKY, new InkyStrategy());
-        TARGETCORNER.put(RenderableType.BINKY, new BinkyStrategy());
-        TARGETCORNER.put(RenderableType.CLYDE, new ClydeStrategy());
+        GHOSTSTRATEGY.put(RenderableType.PINKY, new PinkyStrategy());
+        GHOSTSTRATEGY.put(RenderableType.INKY, new InkyStrategy());
+        GHOSTSTRATEGY.put(RenderableType.BLINKY, new BlinkyStrategy());
+        GHOSTSTRATEGY.put(RenderableType.CLYDE, new ClydeStrategy());
     }
 
-    private static final Image BLINKY_IMAGE = new Image("maze/ghosts/blinky.png");
-    private static final Image GHOST_IMAGE = BLINKY_IMAGE;
-    List<Vector2D> targetCorners = Arrays.asList(
-            new Vector2D(0, TOP_Y_POSITION_OF_MAP),
-            new Vector2D(RIGHT_X_POSITION_OF_MAP, TOP_Y_POSITION_OF_MAP),
-            new Vector2D(0, BOTTOM_Y_POSITION_OF_MAP),
-            new Vector2D(RIGHT_X_POSITION_OF_MAP, BOTTOM_Y_POSITION_OF_MAP)
-    );
+    private final Image image;
+    private final GhostStrategy strategy;
 
-    private int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
+    public GhostFactory(char renderableType) {
+        this.image = IMAGES.get(renderableType);
+        this.strategy = GHOSTSTRATEGY.get(renderableType);
     }
 
     @Override
@@ -60,8 +53,8 @@ public class GhostFactory implements RenderableFactory {
 
             BoundingBox boundingBox = new BoundingBoxImpl(
                     position,
-                    GHOST_IMAGE.getHeight(),
-                    GHOST_IMAGE.getWidth()
+                    this.image.getHeight(),
+                    this.image.getWidth()
             );
 
             KinematicState kinematicState = new KinematicStateImpl.KinematicStateBuilder()
@@ -69,11 +62,11 @@ public class GhostFactory implements RenderableFactory {
                     .build();
 
             return new GhostImpl(
-                    GHOST_IMAGE,
+                    this.image,
                     boundingBox,
                     kinematicState,
                     GhostMode.SCATTER,
-                    targetCorners.get(getRandomNumber(0, targetCorners.size() - 1)));
+                    this.strategy);
         } catch (Exception e) {
             throw new ConfigurationParseException(
                     String.format("Invalid ghost configuration | %s ", e));

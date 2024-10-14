@@ -22,5 +22,10 @@ public interface PlayerPositionSubject {
     /**
      * Notifies observer of change in player's position
      */
-    void notifyObservers();
+    void notifyObserversLocation();
+
+    /**
+     * Nitifies observer of change in player's direction
+     */
+    void notifyObserversDirection();
 }

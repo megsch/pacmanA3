@@ -1,5 +1,6 @@
 package pacman.model.entity.dynamic.player.observer;
 
+import pacman.model.entity.dynamic.physics.Direction;
 import pacman.model.entity.dynamic.physics.Vector2D;
 
 /***
@@ -12,5 +13,11 @@ public interface PlayerPositionObserver {
      *
      * @param position the player's position
      */
-    void update(Vector2D position);
+    void updateLocation(Vector2D position);
+
+    /**
+     * Updates observer with the new direction of the player
+     * @param direction the player's direction
+     */
+    void updateDirection(Direction direction);
 }
