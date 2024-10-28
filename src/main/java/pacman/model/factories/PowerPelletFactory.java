@@ -8,12 +8,10 @@ import pacman.model.entity.dynamic.physics.BoundingBoxImpl;
 import pacman.model.entity.dynamic.physics.Vector2D;
 import pacman.model.entity.staticentity.collectable.Pellet;
 
-/**
- * Concrete renderable factory for Pellet objects
- */
-public class PelletFactory implements RenderableFactory {
-    private static final Image PELLET_IMAGE = new Image("maze/pellet.png");
-    private static final int NUM_POINTS = 10;
+public class PowerPelletFactory implements RenderableFactory {
+
+    private static final Image PELLET_IMAGE = new Image("maze/pellet.png", 32, 32, false, false);
+    private static final int NUM_POINTS = 50;
     private final Renderable.Layer layer = Renderable.Layer.BACKGROUND;
 
     @Override
@@ -21,6 +19,7 @@ public class PelletFactory implements RenderableFactory {
             Vector2D position
     ) {
         try {
+            position = position.add(new Vector2D(-8,-8));
 
             BoundingBox boundingBox = new BoundingBoxImpl(
                     position,
