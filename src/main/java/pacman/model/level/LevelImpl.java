@@ -39,7 +39,6 @@ public class LevelImpl implements Level {
     private int points;
     private GameState gameState;
     private List<Renderable> collectables;
-    private GhostMode currentGhostMode;
 
     public LevelImpl(JSONObject levelConfiguration,
                      Maze maze) {
@@ -49,7 +48,6 @@ public class LevelImpl implements Level {
         this.observers = new ArrayList<>();
         this.modeLengths = new HashMap<>();
         this.gameState = GameState.READY;
-        this.currentGhostMode = GhostMode.SCATTER;
         this.points = 0;
 
         initLevel(new LevelConfigurationReader(levelConfiguration));
@@ -76,7 +74,7 @@ public class LevelImpl implements Level {
         for (Ghost ghost : this.ghosts) {
             player.registerObserver(ghost);
             ghost.setSpeeds(ghostSpeeds);
-            ghost.setGhostMode(this.currentGhostMode);
+            ghost.setGhostMode(GhostMode.SCATTER);
             for (Ghost otherGhost : this.ghosts) {
                 ghost.registerBlinkyObserver(otherGhost.getGhostStrategy());
             }
@@ -119,8 +117,7 @@ public class LevelImpl implements Level {
             for (Ghost ghost : this.ghosts) {
                 if (ghost.getTick() == modeLengths.get(ghost.getGhostMode())) {
                     // update ghost mode
-                    this.currentGhostMode = GhostMode.getNextGhostMode(currentGhostMode);
-                    ghost.setGhostMode(this.currentGhostMode);
+                    ghost.setGhostMode(GhostMode.getNextGhostMode(ghost.getGhostMode()));
                 }
             }
 
@@ -181,8 +178,13 @@ public class LevelImpl implements Level {
     public void collect(Collectable collectable) {
         this.points += collectable.getPoints();
         notifyObserversWithScoreChange(collectable.getPoints());
-        this.collectables.remove(collectable);
 
+        // Removes Pellet & Power Pellet from list, but not ghost
+        if (this.collectables.contains(collectable)) {
+            this.collectables.remove(collectable);
+        }
+
+        // Set Ghost to frightened if Power Pellet consumed
         if (collectable instanceof PowerPellet) {
             for (Ghost ghost : ghosts) {
                 ghost.setGhostMode(GhostMode.FRIGHTENED);

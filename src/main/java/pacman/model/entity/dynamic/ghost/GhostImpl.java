@@ -35,6 +35,7 @@ public class GhostImpl implements Ghost {
     private int currentDirectionCount = 0;
     private List<BlinkyPositionObserver> blinkyPositionObservers;
     private int tickCount;
+    private int points;
 
     public GhostImpl(Image image, Image frightenedImage, BoundingBox boundingBox, KinematicState kinematicState,
                      GhostMode ghostMode, GhostStrategy ghostStrategy) {
@@ -52,6 +53,7 @@ public class GhostImpl implements Ghost {
         this.playerPosition = new Vector2D(224, 8*34);
         this.playerDirection = Direction.LEFT;
         this.tickCount = 0;
+        this.points = 200;
     }
 
     @Override
@@ -144,6 +146,7 @@ public class GhostImpl implements Ghost {
         // ensure direction is switched
         this.currentDirectionCount = minimumDirectionCount;
         resetTick();
+        System.out.println(ghostMode);
     }
 
     @Override
@@ -158,7 +161,10 @@ public class GhostImpl implements Ghost {
 
     @Override
     public void collideWith(Level level, Renderable renderable) {
-        if (level.isPlayer(renderable)) {
+        if (getGhostMode() == GhostMode.FRIGHTENED && level.isPlayer(renderable)) {
+            level.collect(this);
+            collect();
+        } else if (level.isPlayer(renderable)) {
             level.handleLoseLife();
         }
     }
@@ -277,5 +283,20 @@ public class GhostImpl implements Ghost {
     @Override
     public int getTick() {
         return this.tickCount;
+    }
+
+    @Override
+    public void collect() {
+        reset();
+    }
+
+    @Override
+    public boolean isCollectable() {
+        return (getGhostMode() == GhostMode.FRIGHTENED);
+    }
+
+    @Override
+    public int getPoints() {
+        return this.points;
     }
 }

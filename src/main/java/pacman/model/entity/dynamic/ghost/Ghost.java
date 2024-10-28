@@ -4,13 +4,14 @@ import pacman.model.entity.dynamic.DynamicEntity;
 import pacman.model.entity.dynamic.ghost.observer.BlinkyPositionSubject;
 import pacman.model.entity.dynamic.ghost.strategy.GhostStrategy;
 import pacman.model.entity.dynamic.player.observer.PlayerPositionObserver;
+import pacman.model.entity.staticentity.collectable.Collectable;
 
 import java.util.Map;
 
 /**
  * Represents Ghost entity in Pac-Man Game
  */
-public interface Ghost extends DynamicEntity, PlayerPositionObserver, BlinkyPositionSubject {
+public interface Ghost extends DynamicEntity, PlayerPositionObserver, BlinkyPositionSubject, Collectable {
 
     /***
      * Sets the speeds of the Ghost for each GhostMode

@@ -6,7 +6,6 @@ import pacman.model.entity.Renderable;
 import pacman.model.entity.dynamic.physics.BoundingBox;
 import pacman.model.entity.dynamic.physics.BoundingBoxImpl;
 import pacman.model.entity.dynamic.physics.Vector2D;
-import pacman.model.entity.staticentity.collectable.Pellet;
 import pacman.model.entity.staticentity.collectable.PowerPellet;
 
 public class PowerPelletFactory implements RenderableFactory {
