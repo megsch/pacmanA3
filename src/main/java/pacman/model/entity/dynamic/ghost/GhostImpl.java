@@ -97,6 +97,7 @@ public class GhostImpl implements Ghost {
             case CHASE -> this.ghostStrategy.getChaseTargetLocation(this.playerPosition,
                     this.kinematicState.getPosition(), this.playerDirection);
             case SCATTER -> this.ghostStrategy.getScatterTargetLocation();
+            case FRIGHTENED -> this.ghostStrategy.getFrightenedTargetLocation();
         };
     }
 

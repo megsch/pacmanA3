@@ -5,34 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f335de9f-c7cb-4ecf-b7f7-d00ca54f4ac9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/level/LevelConfigurationReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/level/LevelConfigurationReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/distributions/pacmanA3-1.0-SNAPSHOT.tar" beforeDir="false" afterPath="$PROJECT_DIR$/build/distributions/pacmanA3-1.0-SNAPSHOT.tar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/distributions/pacmanA3-1.0-SNAPSHOT.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/distributions/pacmanA3-1.0-SNAPSHOT.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/pacmanA3-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/pacmanA3-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/GhostImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/GhostImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/level/LevelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/level/LevelImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/GhostMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/GhostMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/GhostStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/GhostStrategy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +106,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.pacmanA3 [clean]">
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -143,6 +118,28 @@
         </option>
         <option name="taskNames">
           <list />
+        </option>
+        <option name="vmOptions" value="--module-path &quot;$PROJECT_DIR$/../Downloads/javafx-sdk-17.0.12/lib&quot; --add-modules=javafx.controls" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="pacmanA3 [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
         </option>
         <option name="vmOptions" value="--module-path &quot;$PROJECT_DIR$/../Downloads/javafx-sdk-17.0.12/lib&quot; --add-modules=javafx.controls" />
       </ExternalSystemSettings>
@@ -176,6 +173,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.pacmanA3 [clean]" />
         <item itemvalue="Gradle.pacmanA3 [run]" />
       </list>
     </recent_temporary>
@@ -202,7 +200,7 @@
       <workItem from="1728887544051" duration="4395000" />
       <workItem from="1728896138841" duration="9322000" />
       <workItem from="1729296236349" duration="22000" />
-      <workItem from="1730096353609" duration="1812000" />
+      <workItem from="1730096353609" duration="2796000" />
     </task>
     <servers />
   </component>

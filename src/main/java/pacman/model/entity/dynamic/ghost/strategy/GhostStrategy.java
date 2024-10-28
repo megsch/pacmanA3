@@ -13,4 +13,10 @@ public interface GhostStrategy extends BlinkyPositionObserver {
     Vector2D getChaseTargetLocation(Vector2D pacmanLocation, Vector2D currentGhostLocation, Direction pacmanDirection);
 
     Vector2D getScatterTargetLocation();
+
+    default Vector2D getFrightenedTargetLocation() {
+        int xpos = (int) (Math.random() * 448);
+        int ypos = (int) (Math.random() * 16 * 34);
+        return new Vector2D(xpos, ypos);
+    }
 }
