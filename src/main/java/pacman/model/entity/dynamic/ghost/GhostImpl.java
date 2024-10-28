@@ -20,6 +20,7 @@ public class GhostImpl implements Ghost {
     private static final int minimumDirectionCount = 8;
     private final Layer layer = Layer.FOREGROUND;
     private final Image image;
+    private final Image frightenedImage;
     private final BoundingBox boundingBox;
     private final Vector2D startingPosition;
     private GhostStrategy ghostStrategy;
@@ -35,9 +36,10 @@ public class GhostImpl implements Ghost {
     private List<BlinkyPositionObserver> blinkyPositionObservers;
     private int tickCount;
 
-    public GhostImpl(Image image, BoundingBox boundingBox, KinematicState kinematicState,
+    public GhostImpl(Image image, Image frightenedImage, BoundingBox boundingBox, KinematicState kinematicState,
                      GhostMode ghostMode, GhostStrategy ghostStrategy) {
         this.image = image;
+        this.frightenedImage = frightenedImage;
         this.boundingBox = boundingBox;
         this.kinematicState = kinematicState;
         this.startingPosition = kinematicState.getPosition();
@@ -59,6 +61,9 @@ public class GhostImpl implements Ghost {
 
     @Override
     public Image getImage() {
+        if (ghostMode == GhostMode.FRIGHTENED) {
+            return frightenedImage;
+        }
         return image;
     }
 
@@ -138,6 +143,7 @@ public class GhostImpl implements Ghost {
         }
         // ensure direction is switched
         this.currentDirectionCount = minimumDirectionCount;
+        resetTick();
     }
 
     @Override

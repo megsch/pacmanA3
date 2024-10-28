@@ -7,6 +7,7 @@ import pacman.model.entity.dynamic.physics.BoundingBox;
 import pacman.model.entity.dynamic.physics.BoundingBoxImpl;
 import pacman.model.entity.dynamic.physics.Vector2D;
 import pacman.model.entity.staticentity.collectable.Pellet;
+import pacman.model.entity.staticentity.collectable.PowerPellet;
 
 public class PowerPelletFactory implements RenderableFactory {
 
@@ -27,7 +28,7 @@ public class PowerPelletFactory implements RenderableFactory {
                     PELLET_IMAGE.getWidth()
             );
 
-            return new Pellet(
+            return new PowerPellet(
                     boundingBox,
                     layer,
                     PELLET_IMAGE,

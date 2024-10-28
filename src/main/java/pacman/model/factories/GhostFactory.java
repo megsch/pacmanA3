@@ -28,6 +28,8 @@ public class GhostFactory implements RenderableFactory {
         IMAGES.put(RenderableType.CLYDE, new Image("maze/ghosts/clyde.png"));
     }
 
+    private static final Image FRIGHTENEDIMAGE = new Image("maze/ghosts/frightened.png");
+
     private static final Map<Character, GhostStrategy> GHOSTSTRATEGY = new HashMap<>();
     static {
         GHOSTSTRATEGY.put(RenderableType.PINKY, new PinkyStrategy());
@@ -63,6 +65,7 @@ public class GhostFactory implements RenderableFactory {
 
             return new GhostImpl(
                     this.image,
+                    FRIGHTENEDIMAGE,
                     boundingBox,
                     kinematicState,
                     GhostMode.SCATTER,

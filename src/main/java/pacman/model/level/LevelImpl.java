@@ -12,6 +12,7 @@ import pacman.model.entity.dynamic.player.Controllable;
 import pacman.model.entity.dynamic.player.Pacman;
 import pacman.model.entity.staticentity.StaticEntity;
 import pacman.model.entity.staticentity.collectable.Collectable;
+import pacman.model.entity.staticentity.collectable.PowerPellet;
 import pacman.model.level.observer.LevelStateObserver;
 import pacman.model.maze.Maze;
 
@@ -109,7 +110,7 @@ public class LevelImpl implements Level {
                 setGameState(GameState.IN_PROGRESS);
                 tickCount = 0;
                 for (Ghost g : ghosts) {
-                    g.resetTick();
+                    g.setGhostMode(GhostMode.SCATTER);
                 }
             }
 
@@ -120,7 +121,6 @@ public class LevelImpl implements Level {
                     // update ghost mode
                     this.currentGhostMode = GhostMode.getNextGhostMode(currentGhostMode);
                     ghost.setGhostMode(this.currentGhostMode);
-                    ghost.resetTick();
                 }
             }
 
@@ -182,6 +182,12 @@ public class LevelImpl implements Level {
         this.points += collectable.getPoints();
         notifyObserversWithScoreChange(collectable.getPoints());
         this.collectables.remove(collectable);
+
+        if (collectable instanceof PowerPellet) {
+            for (Ghost ghost : ghosts) {
+                ghost.setGhostMode(GhostMode.FRIGHTENED);
+            }
+        }
     }
 
     @Override
