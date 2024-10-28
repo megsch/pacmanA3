@@ -108,19 +108,20 @@ public class LevelImpl implements Level {
             if (tickCount >= START_LEVEL_TIME) {
                 setGameState(GameState.IN_PROGRESS);
                 tickCount = 0;
+                for (Ghost g : ghosts) {
+                    g.resetTick();
+                }
             }
 
         } else {
 
-            if (tickCount == modeLengths.get(currentGhostMode)) {
-
-                // update ghost mode
-                this.currentGhostMode = GhostMode.getNextGhostMode(currentGhostMode);
-                for (Ghost ghost : this.ghosts) {
+            for (Ghost ghost : this.ghosts) {
+                if (ghost.getTick() == modeLengths.get(ghost.getGhostMode())) {
+                    // update ghost mode
+                    this.currentGhostMode = GhostMode.getNextGhostMode(currentGhostMode);
                     ghost.setGhostMode(this.currentGhostMode);
+                    ghost.resetTick();
                 }
-
-                tickCount = 0;
             }
 
             if (tickCount % Pacman.PACMAN_IMAGE_SWAP_TICK_COUNT == 0) {
@@ -160,6 +161,10 @@ public class LevelImpl implements Level {
         }
 
         tickCount++;
+
+        for (Ghost ghost : ghosts) {
+            ghost.incrementTick();
+        }
     }
 
     @Override

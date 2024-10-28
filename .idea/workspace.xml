@@ -5,58 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f335de9f-c7cb-4ecf-b7f7-d00ca54f4ac9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/observer/BlinkyPositionObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/observer/BlinkyPositionSubject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/testghostblinky.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/testghostclyde.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/testghostinky.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/testghostpinky.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/gc.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/engine/GameEngineImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/engine/GameEngineImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/ghost/Ghost.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/ghost/Ghost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/ghost/GhostImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/ghost/GhostImpl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/ghost/GhostImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/ghost/GhostImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/player/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/player/Pacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/player/observer/PlayerPositionObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/player/observer/PlayerPositionObserver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/player/observer/PlayerPositionSubject.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/entity/dynamic/player/observer/PlayerPositionSubject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/factories/GhostFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/factories/GhostFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/factories/RenderableType.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/factories/RenderableType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/level/LevelImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/level/LevelImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/maze/Maze.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/maze/Maze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/model/level/LevelConfigurationReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/model/level/LevelConfigurationReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/distributions/pacmanA3-1.0-SNAPSHOT.tar" beforeDir="false" afterPath="$PROJECT_DIR$/build/distributions/pacmanA3-1.0-SNAPSHOT.tar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/distributions/pacmanA3-1.0-SNAPSHOT.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/distributions/pacmanA3-1.0-SNAPSHOT.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/pacmanA3-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/pacmanA3-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/engine/GameEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/engine/GameEngineImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/GhostImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/GhostImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/BinkyStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/BlinkyStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/ClydeStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/ClydeStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/GhostStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/GhostStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/InkyStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/InkyStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/PinkyStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/PinkyStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/player/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/player/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/player/observer/PlayerPositionObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/player/observer/PlayerPositionObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/player/observer/PlayerPositionSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/player/observer/PlayerPositionSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/factories/GhostFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/factories/GhostFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/factories/RenderableType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/factories/RenderableType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/level/LevelConfigurationReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/level/LevelConfigurationReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/level/LevelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/level/LevelImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/model/maze/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/model/maze/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,27 +105,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.pacmanA3 [:App.main()].executor": "Run",
-    "Gradle.pacmanA3 [run].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/megan/pacmanA3/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.pacmanA3 [:App.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.pacmanA3 [run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/megan/configmanager&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -224,7 +200,9 @@
       <workItem from="1728812872090" duration="84000" />
       <workItem from="1728812974298" duration="13761000" />
       <workItem from="1728887544051" duration="4395000" />
-      <workItem from="1728896138841" duration="9222000" />
+      <workItem from="1728896138841" duration="9322000" />
+      <workItem from="1729296236349" duration="22000" />
+      <workItem from="1730096353609" duration="1812000" />
     </task>
     <servers />
   </component>
@@ -238,11 +216,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/pacman/model/entity/dynamic/ghost/strategy/InkyStrategy.java</url>
           <line>32</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pacman/model/level/LevelImpl.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

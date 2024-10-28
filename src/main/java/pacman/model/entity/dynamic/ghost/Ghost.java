@@ -26,6 +26,12 @@ public interface Ghost extends DynamicEntity, PlayerPositionObserver, BlinkyPosi
     void setGhostMode(GhostMode ghostMode);
 
     /**
+     * Gets the Ghost mode
+     * @return the Ghost's mode
+     */
+    GhostMode getGhostMode();
+
+    /**
      * Get the ghost's strategy
      * @return the ghost's strategy
      */
@@ -36,4 +42,20 @@ public interface Ghost extends DynamicEntity, PlayerPositionObserver, BlinkyPosi
      * @param ghostStrategy the ghost's strategy
      */
     void setGhostStrategy(GhostStrategy ghostStrategy);
+
+    /**
+     * Increments the Ghost's tick counter
+     */
+    void incrementTick();
+
+    /**
+     * Resets the Ghost's tick counter to 0
+     */
+    void resetTick();
+
+    /**
+     * Get the Ghost tick
+     * @return the ghost's tick
+     */
+    int getTick();
 }

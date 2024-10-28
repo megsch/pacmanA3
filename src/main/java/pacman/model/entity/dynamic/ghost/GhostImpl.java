@@ -33,6 +33,7 @@ public class GhostImpl implements Ghost {
     private Map<GhostMode, Double> speeds;
     private int currentDirectionCount = 0;
     private List<BlinkyPositionObserver> blinkyPositionObservers;
+    private int tickCount;
 
     public GhostImpl(Image image, BoundingBox boundingBox, KinematicState kinematicState,
                      GhostMode ghostMode, GhostStrategy ghostStrategy) {
@@ -48,6 +49,7 @@ public class GhostImpl implements Ghost {
         this.blinkyPositionObservers = new ArrayList<>();
         this.playerPosition = new Vector2D(224, 8*34);
         this.playerDirection = Direction.LEFT;
+        this.tickCount = 0;
     }
 
     @Override
@@ -135,6 +137,11 @@ public class GhostImpl implements Ghost {
         }
         // ensure direction is switched
         this.currentDirectionCount = minimumDirectionCount;
+    }
+
+    @Override
+    public GhostMode getGhostMode() {
+        return this.ghostMode;
     }
 
     @Override
@@ -248,5 +255,20 @@ public class GhostImpl implements Ghost {
     @Override
     public void setGhostStrategy(GhostStrategy ghostStrategy) {
         this.ghostStrategy = ghostStrategy;
+    }
+
+    @Override
+    public void incrementTick() {
+        this.tickCount++;
+    }
+
+    @Override
+    public void resetTick() {
+        this.tickCount = 0;
+    }
+
+    @Override
+    public int getTick() {
+        return this.tickCount;
     }
 }
