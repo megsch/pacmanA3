@@ -311,7 +311,6 @@ public class GhostImpl implements Ghost {
         // ensure direction is switched
         this.currentDirectionCount = minimumDirectionCount;
         resetTick();
-        System.out.println(ghostMode);
     }
 
     @Override
