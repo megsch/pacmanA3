@@ -161,10 +161,7 @@ public class GhostImpl implements Ghost {
 
     @Override
     public void collideWith(Level level, Renderable renderable) {
-        if (getGhostMode() == GhostMode.FRIGHTENED && level.isPlayer(renderable)) {
-            level.collect(this);
-            collect();
-        } else if (level.isPlayer(renderable)) {
+        if (level.isPlayer(renderable) && !isCollectable()) {
             level.handleLoseLife();
         }
     }

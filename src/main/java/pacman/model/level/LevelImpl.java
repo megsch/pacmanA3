@@ -10,6 +10,7 @@ import pacman.model.entity.dynamic.ghost.GhostMode;
 import pacman.model.entity.dynamic.physics.PhysicsEngine;
 import pacman.model.entity.dynamic.player.Controllable;
 import pacman.model.entity.dynamic.player.Pacman;
+import pacman.model.entity.staticentity.CollectableDecorator.PointDoubleDecorator;
 import pacman.model.entity.staticentity.StaticEntity;
 import pacman.model.entity.staticentity.collectable.Collectable;
 import pacman.model.entity.staticentity.collectable.PowerPellet;
@@ -39,6 +40,7 @@ public class LevelImpl implements Level {
     private int points;
     private GameState gameState;
     private List<Renderable> collectables;
+    private List<Collectable> ghostCollectables;
 
     public LevelImpl(JSONObject levelConfiguration,
                      Maze maze) {
@@ -68,6 +70,9 @@ public class LevelImpl implements Level {
         // Set up ghosts
         this.ghosts = maze.getGhosts().stream()
                 .map(element -> (Ghost) element)
+                .collect(Collectors.toList());
+        this.ghostCollectables = maze.getGhosts().stream()
+                .map(element -> (Collectable) element)
                 .collect(Collectors.toList());
         Map<GhostMode, Double> ghostSpeeds = levelConfigurationReader.getGhostSpeeds();
 
@@ -154,6 +159,12 @@ public class LevelImpl implements Level {
                         PhysicsEngine.resolveCollision(dynamicEntityA, staticEntity);
                     }
                 }
+
+                for (int ghost=0; ghost < ghostCollectables.size(); ghost++) {
+                    if (dynamicEntityA.collidesWith(ghostCollectables.get(ghost))) {
+                        dynamicEntityA.collideWith(this, ghostCollectables.get(ghost));
+                    }
+                }
             }
         }
 
@@ -171,7 +182,8 @@ public class LevelImpl implements Level {
 
     @Override
     public boolean isCollectable(Renderable renderable) {
-        return maze.getPellets().contains(renderable) && ((Collectable) renderable).isCollectable();
+        return (maze.getPellets().contains(renderable) || this.ghostCollectables.contains(renderable)) &&
+                ((Collectable) renderable).isCollectable();
     }
 
     @Override
@@ -182,6 +194,13 @@ public class LevelImpl implements Level {
         // Removes Pellet & Power Pellet from list, but not ghost
         if (this.collectables.contains(collectable)) {
             this.collectables.remove(collectable);
+        } else {
+            // Add score multiplier for ghosts
+            for (int i=0; i<this.ghostCollectables.size(); i++) {
+                Collectable ghost = this.ghostCollectables.remove(i);
+                ghost = new PointDoubleDecorator(ghost);
+                this.ghostCollectables.add(i, ghost);
+            }
         }
 
         // Set Ghost to frightened if Power Pellet consumed
@@ -189,6 +208,10 @@ public class LevelImpl implements Level {
             for (Ghost ghost : ghosts) {
                 ghost.setGhostMode(GhostMode.FRIGHTENED);
             }
+            // Reset ghost collectables, get rid of decorations
+            this.ghostCollectables = maze.getGhosts().stream()
+                    .map(element -> (Collectable) element)
+                    .collect(Collectors.toList());
         }
     }
 
