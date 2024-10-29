@@ -5,6 +5,8 @@ import pacman.model.entity.dynamic.ghost.GhostMode;
 import pacman.model.entity.dynamic.physics.Direction;
 import pacman.model.entity.dynamic.physics.Vector2D;
 
+import java.util.Map;
+
 public interface GhostState {
 
     /**
@@ -38,4 +40,18 @@ public interface GhostState {
      * @return Ghost mode
      */
     GhostMode getGhostMode();
+
+    /**
+     * Checks if the Ghost's tick count has reached the mode length
+     * Calls changeState if the tick count has reached mode length
+     */
+    void checkGhostMode(Map<GhostMode, Integer> modeLengths);
+
+    /**
+     * The ghost should update their position in this state
+     * @return True if ghost should move, false if they should not move
+     */
+    default boolean doUpdatePosition() {
+        return true;
+    }
 }

@@ -3,6 +3,7 @@ package pacman.model.entity.dynamic.ghost;
 import javafx.scene.image.Image;
 import pacman.model.entity.Renderable;
 import pacman.model.entity.dynamic.ghost.observer.BlinkyPositionObserver;
+import pacman.model.entity.dynamic.ghost.state.EatenState;
 import pacman.model.entity.dynamic.ghost.state.GhostState;
 import pacman.model.entity.dynamic.ghost.state.ScatterState;
 import pacman.model.entity.dynamic.ghost.strategy.BlinkyStrategy;
@@ -79,10 +80,12 @@ public class GhostImpl implements Ghost {
 
     @Override
     public void update() {
-        this.updateDirection();
-        this.kinematicState.update();
-        this.boundingBox.setTopLeft(this.kinematicState.getPosition());
-        notifyBlinkyObserversLocation();
+        if (this.ghostState.doUpdatePosition()) {
+            this.updateDirection();
+            this.kinematicState.update();
+            this.boundingBox.setTopLeft(this.kinematicState.getPosition());
+            notifyBlinkyObserversLocation();
+        }
     }
 
     private void updateDirection() {
@@ -301,7 +304,7 @@ public class GhostImpl implements Ghost {
     @Override
     public void setGhostState(GhostState state) {
         this.ghostState = state;
-        GhostMode ghostMode = this.ghostState.getGhostMode();
+        GhostMode ghostMode = this.getGhostMode();
         if (this.speeds != null) {
             this.kinematicState.setSpeed(speeds.get(ghostMode));
         }
@@ -317,8 +320,14 @@ public class GhostImpl implements Ghost {
     }
 
     @Override
+    public void checkTick(Map<GhostMode, Integer> modeLengths) {
+        this.ghostState.checkGhostMode(modeLengths);
+    }
+
+    @Override
     public void collect() {
         reset();
+        this.setGhostState(new EatenState(this));
     }
 
     @Override

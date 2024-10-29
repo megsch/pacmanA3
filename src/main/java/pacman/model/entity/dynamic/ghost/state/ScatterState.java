@@ -7,6 +7,8 @@ import pacman.model.entity.dynamic.ghost.strategy.GhostStrategy;
 import pacman.model.entity.dynamic.physics.Direction;
 import pacman.model.entity.dynamic.physics.Vector2D;
 
+import java.util.Map;
+
 public class ScatterState implements GhostState {
 
     private Ghost ghost;
@@ -38,5 +40,13 @@ public class ScatterState implements GhostState {
     @Override
     public GhostMode getGhostMode() {
         return GhostMode.SCATTER;
+    }
+
+    @Override
+    public void checkGhostMode(Map<GhostMode, Integer> modeLengths) {
+        Integer length = modeLengths.get(getGhostMode());
+        if (this.ghost.getTick() == length) {
+            changeState();
+        }
     }
 }

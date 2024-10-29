@@ -122,10 +122,7 @@ public class LevelImpl implements Level {
         } else {
 
             for (Ghost ghost : this.ghosts) {
-                if (ghost.getTick() == modeLengths.get(ghost.getGhostMode())) {
-                    // update ghost mode
-                    ghost.changeGhostState();
-                }
+                ghost.checkTick(this.modeLengths);
             }
 
             if (tickCount % Pacman.PACMAN_IMAGE_SWAP_TICK_COUNT == 0) {

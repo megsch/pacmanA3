@@ -83,4 +83,11 @@ public interface Ghost extends DynamicEntity, PlayerPositionObserver, BlinkyPosi
      * Changes the Ghost state
      */
     void changeGhostState();
+
+    /**
+     * Check if the tick count has reached mode length.
+     * Will change to next state if it has.
+     * @param modeLengths the modelengths from the config file
+     */
+    void checkTick(Map<GhostMode, Integer> modeLengths);
 }
