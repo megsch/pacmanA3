@@ -7,6 +7,8 @@ import pacman.model.entity.Renderable;
 import pacman.model.entity.dynamic.DynamicEntity;
 import pacman.model.entity.dynamic.ghost.Ghost;
 import pacman.model.entity.dynamic.ghost.GhostMode;
+import pacman.model.entity.dynamic.ghost.state.FrightenedState;
+import pacman.model.entity.dynamic.ghost.state.ScatterState;
 import pacman.model.entity.dynamic.physics.PhysicsEngine;
 import pacman.model.entity.dynamic.player.Controllable;
 import pacman.model.entity.dynamic.player.Pacman;
@@ -79,7 +81,7 @@ public class LevelImpl implements Level {
         for (Ghost ghost : this.ghosts) {
             player.registerObserver(ghost);
             ghost.setSpeeds(ghostSpeeds);
-            ghost.setGhostMode(GhostMode.SCATTER);
+            ghost.setGhostState(new ScatterState(ghost));
             for (Ghost otherGhost : this.ghosts) {
                 ghost.registerBlinkyObserver(otherGhost.getGhostStrategy());
             }
@@ -113,7 +115,7 @@ public class LevelImpl implements Level {
                 setGameState(GameState.IN_PROGRESS);
                 tickCount = 0;
                 for (Ghost g : ghosts) {
-                    g.setGhostMode(GhostMode.SCATTER);
+                    g.setGhostState(new ScatterState(g));
                 }
             }
 
@@ -122,7 +124,7 @@ public class LevelImpl implements Level {
             for (Ghost ghost : this.ghosts) {
                 if (ghost.getTick() == modeLengths.get(ghost.getGhostMode())) {
                     // update ghost mode
-                    ghost.setGhostMode(GhostMode.getNextGhostMode(ghost.getGhostMode()));
+                    ghost.changeGhostState();
                 }
             }
 
@@ -206,7 +208,7 @@ public class LevelImpl implements Level {
         // Set Ghost to frightened if Power Pellet consumed
         if (collectable instanceof PowerPellet) {
             for (Ghost ghost : ghosts) {
-                ghost.setGhostMode(GhostMode.FRIGHTENED);
+                ghost.setGhostState(new FrightenedState(ghost));
             }
             // Reset ghost collectables, get rid of decorations
             this.ghostCollectables = maze.getGhosts().stream()

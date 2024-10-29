@@ -3,6 +3,8 @@ package pacman.model.entity.dynamic.ghost;
 import javafx.scene.image.Image;
 import pacman.model.entity.Renderable;
 import pacman.model.entity.dynamic.ghost.observer.BlinkyPositionObserver;
+import pacman.model.entity.dynamic.ghost.state.GhostState;
+import pacman.model.entity.dynamic.ghost.state.ScatterState;
 import pacman.model.entity.dynamic.ghost.strategy.BlinkyStrategy;
 import pacman.model.entity.dynamic.ghost.strategy.GhostStrategy;
 import pacman.model.entity.dynamic.ghost.strategy.InkyStrategy;
@@ -25,7 +27,7 @@ public class GhostImpl implements Ghost {
     private final Vector2D startingPosition;
     private GhostStrategy ghostStrategy;
     private KinematicState kinematicState;
-    private GhostMode ghostMode;
+    private GhostState ghostState;
     private Vector2D targetLocation;
     private Vector2D playerPosition;
     private Direction playerDirection;
@@ -38,13 +40,13 @@ public class GhostImpl implements Ghost {
     private int points;
 
     public GhostImpl(Image image, Image frightenedImage, BoundingBox boundingBox, KinematicState kinematicState,
-                     GhostMode ghostMode, GhostStrategy ghostStrategy) {
+                     GhostStrategy ghostStrategy) {
         this.image = image;
         this.frightenedImage = frightenedImage;
         this.boundingBox = boundingBox;
         this.kinematicState = kinematicState;
         this.startingPosition = kinematicState.getPosition();
-        this.ghostMode = ghostMode;
+        this.ghostState = new ScatterState(this);
         this.possibleDirections = new HashSet<>();
         this.ghostStrategy = ghostStrategy;
         this.targetLocation = getTargetLocation();
@@ -62,11 +64,17 @@ public class GhostImpl implements Ghost {
     }
 
     @Override
+    public GhostMode getGhostMode() {
+        return this.ghostState.getGhostMode();
+    }
+
+    @Override
     public Image getImage() {
-        if (ghostMode == GhostMode.FRIGHTENED) {
-            return frightenedImage;
-        }
-        return image;
+        return this.ghostState.getImage();
+//        if (ghostMode == GhostMode.FRIGHTENED) {
+//            return frightenedImage;
+//        }
+//        return image;
     }
 
     @Override
@@ -100,12 +108,14 @@ public class GhostImpl implements Ghost {
     }
 
     private Vector2D getTargetLocation() {
-        return switch (this.ghostMode) {
-            case CHASE -> this.ghostStrategy.getChaseTargetLocation(this.playerPosition,
+        return this.ghostState.getTargetLocation(this.playerPosition,
                     this.kinematicState.getPosition(), this.playerDirection);
-            case SCATTER -> this.ghostStrategy.getScatterTargetLocation();
-            case FRIGHTENED -> this.ghostStrategy.getFrightenedTargetLocation();
-        };
+//        return switch (this.ghostMode) {
+//            case CHASE -> this.ghostStrategy.getChaseTargetLocation(this.playerPosition,
+//                    this.kinematicState.getPosition(), this.playerDirection);
+//            case SCATTER -> this.ghostStrategy.getScatterTargetLocation();
+//            case FRIGHTENED -> this.ghostStrategy.getFrightenedTargetLocation();
+//        };
     }
 
     private Direction selectDirection(Set<Direction> possibleDirections) {
@@ -137,22 +147,17 @@ public class GhostImpl implements Ghost {
         return Collections.min(distances.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
-    @Override
-    public void setGhostMode(GhostMode ghostMode) {
-        this.ghostMode = ghostMode;
-        if (this.speeds != null) {
-            this.kinematicState.setSpeed(speeds.get(ghostMode));
-        }
-        // ensure direction is switched
-        this.currentDirectionCount = minimumDirectionCount;
-        resetTick();
-        System.out.println(ghostMode);
-    }
-
-    @Override
-    public GhostMode getGhostMode() {
-        return this.ghostMode;
-    }
+//    @Override
+//    public void setGhostMode(GhostMode ghostMode) {
+//        this.ghostMode = ghostMode;
+//        if (this.speeds != null) {
+//            this.kinematicState.setSpeed(speeds.get(ghostMode));
+//        }
+//        // ensure direction is switched
+//        this.currentDirectionCount = minimumDirectionCount;
+//        resetTick();
+//        System.out.println(ghostMode);
+//    }
 
     @Override
     public boolean collidesWith(Renderable renderable) {
@@ -238,7 +243,8 @@ public class GhostImpl implements Ghost {
                 .setPosition(startingPosition)
                 .build();
         this.boundingBox.setTopLeft(startingPosition);
-        this.setGhostMode(GhostMode.SCATTER);
+//        this.setGhostMode(GhostMode.SCATTER);
+        this.setGhostState(new ScatterState(this));
         this.currentDirectionCount = minimumDirectionCount;
     }
 
@@ -283,13 +289,41 @@ public class GhostImpl implements Ghost {
     }
 
     @Override
+    public Image getNormalImage() {
+        return this.image;
+    }
+
+    @Override
+    public Image getFrightenedImage() {
+        return this.frightenedImage;
+    }
+
+    @Override
+    public void setGhostState(GhostState state) {
+        this.ghostState = state;
+        GhostMode ghostMode = this.ghostState.getGhostMode();
+        if (this.speeds != null) {
+            this.kinematicState.setSpeed(speeds.get(ghostMode));
+        }
+        // ensure direction is switched
+        this.currentDirectionCount = minimumDirectionCount;
+        resetTick();
+        System.out.println(ghostMode);
+    }
+
+    @Override
+    public void changeGhostState() {
+        this.ghostState.changeState();
+    }
+
+    @Override
     public void collect() {
         reset();
     }
 
     @Override
     public boolean isCollectable() {
-        return (getGhostMode() == GhostMode.FRIGHTENED);
+        return (ghostState.isCollectable());
     }
 
     @Override

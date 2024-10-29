@@ -68,7 +68,6 @@ public class GhostFactory implements RenderableFactory {
                     FRIGHTENEDIMAGE,
                     boundingBox,
                     kinematicState,
-                    GhostMode.SCATTER,
                     this.strategy);
         } catch (Exception e) {
             throw new ConfigurationParseException(

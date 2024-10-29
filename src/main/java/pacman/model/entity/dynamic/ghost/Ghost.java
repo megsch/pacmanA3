@@ -2,9 +2,11 @@ package pacman.model.entity.dynamic.ghost;
 
 import pacman.model.entity.dynamic.DynamicEntity;
 import pacman.model.entity.dynamic.ghost.observer.BlinkyPositionSubject;
+import pacman.model.entity.dynamic.ghost.state.GhostState;
 import pacman.model.entity.dynamic.ghost.strategy.GhostStrategy;
 import pacman.model.entity.dynamic.player.observer.PlayerPositionObserver;
 import pacman.model.entity.staticentity.collectable.Collectable;
+import javafx.scene.image.Image;
 
 import java.util.Map;
 
@@ -19,13 +21,13 @@ public interface Ghost extends DynamicEntity, PlayerPositionObserver, BlinkyPosi
      */
     void setSpeeds(Map<GhostMode, Double> speeds);
 
-    /**
-     * Sets the mode of the Ghost used to calculate target position
-     *
-     * @param ghostMode mode of the Ghost
-     */
-    void setGhostMode(GhostMode ghostMode);
-
+//    /**
+//     * Sets the mode of the Ghost used to calculate target position
+//     *
+//     * @param ghostMode mode of the Ghost
+//     */
+//    void setGhostMode(GhostMode ghostMode);
+//
     /**
      * Gets the Ghost mode
      * @return the Ghost's mode
@@ -59,4 +61,26 @@ public interface Ghost extends DynamicEntity, PlayerPositionObserver, BlinkyPosi
      * @return the ghost's tick
      */
     int getTick();
+
+    /**
+     * Get the Ghost's normal image
+     * @return normal image
+     */
+    Image getNormalImage();
+
+    /**
+     * Get the ghost's frightened Image
+     * @return frightened image
+     */
+    Image getFrightenedImage();
+
+    /**
+     * Sets Ghost state
+     */
+    void setGhostState(GhostState state);
+
+    /**
+     * Changes the Ghost state
+     */
+    void changeGhostState();
 }
